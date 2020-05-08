@@ -1,3 +1,5 @@
+require 'pry'
+
 # Write your code below game_hash
 def game_hash
   {
@@ -127,3 +129,126 @@ def game_hash
 end
 
 # Write code here
+def num_points_scored (player)
+  
+  game_hash.each do |key,value|
+    count = 0 
+    while count < game_hash[key][:players].length do
+      if game_hash[key][:players][count][:player_name] == player
+        return game_hash[key][:players][count][:points]
+      end
+    count += 1
+    end  
+  end
+
+end
+
+
+
+def shoe_size (player)
+  
+  game_hash.each do |key,value|
+    count = 0 
+    while count < game_hash[key][:players].length do
+      if game_hash[key][:players][count][:player_name] == player
+        return game_hash[key][:players][count][:shoe]
+      end
+    count += 1
+    end  
+  end
+
+end
+
+
+
+def team_colors (team)
+  game_hash.each do |key,value|
+    if game_hash[key][:team_name] == team
+      return game_hash[key][:colors]
+    end
+  end
+end
+
+
+
+def team_names
+  game_array = []
+
+  game_hash.each do |key,value|
+    game_array << game_hash[key][:team_name]
+  end
+  return game_array
+end
+
+
+
+def player_numbers (team)
+  team_numbers = []
+
+  game_hash.each do |key,value|
+    if game_hash[key][:team_name] == team
+      count = 0
+      while count < game_hash[key][:players].length
+        team_numbers << game_hash[key][:players][count][:number]
+        count += 1
+      end
+    end
+  end
+  return team_numbers
+end
+
+
+
+def player_stats (player)
+  
+  game_hash.each do |key,value|
+    count = 0
+    while count < game_hash[key][:players].length
+      if game_hash[key][:players][count][:player_name] == player
+          return game_hash[key][:players][count]
+      end
+    count += 1
+    end
+  end
+
+end
+
+
+
+def big_shoe_rebounds 
+  shoe = 0
+
+  game_hash.each do |key,value|
+    count = 0
+    while count < game_hash[key][:players].length
+      if shoe < game_hash[key][:players][count][:shoe] 
+         shoe = game_hash[key][:players][count][:shoe]
+      end
+      count += 1
+    end
+  end  
+
+  game_hash.each do |key,value|
+    count = 0
+    while count < game_hash[key][:players].length
+      if game_hash[key][:players][count][:shoe] == shoe
+        return game_hash[key][:players][count][:rebounds]
+      end
+      count += 1
+    end
+  end
+         
+
+
+  #This should be the return value: game_hash[:home][:players][3][:rebounds]
+end
+
+
+#binding.pry
+
+
+
+
+
+
+
